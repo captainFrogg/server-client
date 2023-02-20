@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint",
+			"johnpapa.angular2",
+			"esbenp.prettier-vscode",
+			"ms-python.vscode-pylance",
+			"ms-python.python"
+		]
+	}
+}
