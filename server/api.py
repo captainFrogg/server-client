@@ -1,5 +1,4 @@
-from resources.user_api import Todo, TodoList
+from resources.user_api import UserResource
 
 def init_api(api):
-    api.add_resource(TodoList, '/todos')
-    api.add_resource(Todo, '/todos/<todo_id>')
+    api.add_resource(UserResource, '/user/<user_id>')

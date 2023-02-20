@@ -1,3 +1,4 @@
 Flask==2.2.2
 Flask_RESTful==0.3.9
 SQLAlchemy==2.0.4
+SQLAlchemy_serializer==1.4.1
