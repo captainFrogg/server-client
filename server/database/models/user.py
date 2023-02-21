@@ -1,11 +1,10 @@
 from sqlalchemy import Column, Integer, String
 from database.database import Base
 from sqlalchemy_serializer import SerializerMixin
-from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 
-class User(Base, SerializerMixin, UserMixin):
+class User(Base, SerializerMixin):
     __tablename__ = 'users'
     serialize_only = ('id', 'email', 'name')
 
@@ -28,5 +27,5 @@ class User(Base, SerializerMixin, UserMixin):
         self.password = generate_password_hash(
             password).decode('utf-8')
 
-    def check_password(password):
-        return check_password_hash(password)
+    def check_password(self, password):
+        return check_password_hash(self.password, password)

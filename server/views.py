@@ -1,6 +1,7 @@
 import json
 
-from flask import request
+from flask import jsonify, request
+from flask_jwt_extended import create_access_token
 from database.models.user import User
 from app import db_session
 
@@ -12,10 +13,20 @@ def init_routes(app):
 
     @app.route("/login", methods=['POST'])
     def login():
-        params = json.loads(request.data)
-        username = params.name
-        password = params.password
-        # user = User.query.
+        username = request.json.get("name", None)
+        password = request.json.get("password", None)
+
+        user = User.query.filter_by(name=username).first()
+
+        if user is None:
+            return jsonify({"msg": "Bad username or password"}), 401
+
+        if user.check_password(password):
+            access_token = create_access_token(identity=username)
+
+            return jsonify(access_token=access_token)
+
+        return jsonify({"msg": "Bad username or password"}), 401
 
     @app.route("/sign-up", methods=['POST'])
     def sign_up():
