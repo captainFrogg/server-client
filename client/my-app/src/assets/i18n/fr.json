@@ -1,0 +1,16 @@
+{
+  "CONNECTION": "Connexion",
+  "USERNAME": "Nom d'utilisateur",
+  "PASSWORD": "Mot de passe",
+  "LOGIN": "Se connecter",
+  "FORGOTTEN_PASSWORD": "Mot de passe oublié ?",
+  "SIGNUP": "Créer un compte",
+  "SIGNING_UP": "Création de compte",
+  "EMAIL": "E-mail",
+  "USE_EXISTING_ACCOUNT": "Utiliser un compte existant",
+  "ACCOUNT_CREATION_SUCCESS": "Création de compte réussie",
+  "ACCOUNT_CREATION_ERROR": "Erreur lors de la création de compte",
+  "AUTHENTICATION_SUCCESS": "Authentification réussie",
+  "AUTHENTICATION_ERROR": "Authentification impossible",
+  "CLOSE": "Fermer"
+}

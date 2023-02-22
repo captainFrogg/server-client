@@ -5,8 +5,6 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 
 from api import init_api
-from login import login_manager
-from views import init_routes
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,13 +13,24 @@ app.config["JWT_SECRET_KEY"] = "minou"  # Change this!
 jwt = JWTManager(app)
 init_db()
 init_api(api)
-login_manager.init_app(app)
-init_routes(app)
 
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
+
+
+@app.after_request
+def add_cors(response):
+    response.headers["Access-Control-Allow-Origin"] = "http://localhost:4200"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Methods"] =\
+        "POST, GET, OPTIONS, PUT, DELETE"
+    response.headers["Access-Control-Allow-Headers"] =\
+        ("Accept, Content-Type, Content-Length, Accept-Encoding" +
+            "X-CSRF-Token, Authorization")
+    return response
+
 
 # @app.route("/")
 # def hello_world():

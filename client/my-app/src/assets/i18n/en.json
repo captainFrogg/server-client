@@ -1,0 +1,17 @@
+{
+  "CONNECTION": "Connection",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Login",
+  "FORGOTTEN_PASSWORD": "Forgotten password ?",
+  "SIGNUP": "Signup",
+  "SIGNING_UP": "Signing up",
+  "EMAIL": "E-mail",
+  "USE_EXISTING_ACCOUNT": "Use an existing account",
+  "ACCOUNT_CREATION_SUCCESS": "Account was successfully created",
+  "ACCOUNT_CREATION_ERROR": "Error during account creation",
+  "AUTHENTICATION_SUCCESS": "Authentication successful",
+  "AUTHENTICATION_ERROR": "Authentication failed",
+  "CLOSE": "Close",
+  "LOGOUT": "Logout"
+}
