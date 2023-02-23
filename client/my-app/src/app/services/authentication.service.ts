@@ -5,7 +5,7 @@ import { mergeMap, catchError, map } from 'rxjs/operators';
 import { ConfigurationService } from './configuration.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthenticationService {
   public authUser: any;
@@ -27,7 +27,7 @@ export class AuthenticationService {
       {
         email,
         username,
-        password,
+        password
       }
     );
   }
@@ -37,21 +37,21 @@ export class AuthenticationService {
     return this.httpClient
       .post(`${this.configurationService.serverUrl}/login`, {
         username,
-        password,
+        password
       })
       .pipe(
-        catchError((error) => {
+        catchError(error => {
           return throwError(() => error);
         }),
         map((response: any) => {
-          this.authToken = response.token;
+          this.authToken = response.access_token;
           this.authUser = {
             username: response.username,
             firstName: response.firstName,
             lastName: response.lastName,
-            email: response.email,
+            email: response.email
           };
-          localStorage.setItem('authToken', response.token);
+          localStorage.setItem('authToken', response.access_token);
           localStorage.setItem('authUser', JSON.stringify(this.authUser));
           return 'Authentication Success';
         })
