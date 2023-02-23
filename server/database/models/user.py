@@ -6,7 +6,7 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 
 class User(Base, SerializerMixin):
     __tablename__ = 'users'
-    serialize_only = ('id', 'email', 'name')
+    serialize_only = ('id', 'email', 'username')
 
     id = Column(Integer, primary_key=True)
     username = Column(String(50), unique=True, nullable=False)

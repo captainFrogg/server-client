@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request
+from flask import jsonify, make_response, request
 from flask_jwt_extended import create_access_token
 from flask_restful import Api, Resource
 from app import db_session

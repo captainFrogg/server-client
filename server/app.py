@@ -32,6 +32,3 @@ def add_cors(response):
     return response
 
 
-# @app.route("/")
-# def hello_world():
-#     return "<p>Hello, World!</p>"
