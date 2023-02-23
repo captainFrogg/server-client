@@ -4,7 +4,24 @@
 			"path": "."
 		}
 	],
-	"settings": {},
+	"settings": {  
+		"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"editor.formatOnSave": true,
+	},
 	"extensions": {
 		"recommendations": [
 			"dbaeumer.vscode-eslint",
@@ -13,5 +30,6 @@
 			"ms-python.vscode-pylance",
 			"ms-python.python"
 		]
-	}
+	},
+	
 }

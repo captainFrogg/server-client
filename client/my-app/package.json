@@ -6,7 +6,14 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "npx compodoc -p tsconfig.app.json src",
+    "serve_compodoc": "compodoc -p tsconfig.json  -s",
+    "eslint": "eslint ./src/app --ext .ts",
+    "eslint:table": "eslint --format table ./src/app --ext .ts",
+    "eslint:fix": "eslint ./src/app --ext .ts --fix",
+    "eslint:compact": " eslint ./src/app --ext .ts --format compact"
+
   },
   "private": true,
   "dependencies": {
@@ -30,13 +37,20 @@
     "@angular-devkit/build-angular": "^15.1.4",
     "@angular/cli": "~15.1.4",
     "@angular/compiler-cli": "^15.1.0",
+    "@compodoc/compodoc": "^1.1.19",
     "@types/jasmine": "~4.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.2.1",
     "typescript": "~4.9.4"
   }
 }
