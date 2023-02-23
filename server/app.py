@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from api import init_api
 
 app = Flask(__name__)
+app.config['PROPAGATE_EXCEPTIONS'] = True
 api = Api(app)
 bcrypt = Bcrypt(app)
 app.config["JWT_SECRET_KEY"] = "minou"  # Change this!
