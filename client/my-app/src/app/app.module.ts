@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   HttpClient,
   HttpClientModule,
-  HTTP_INTERCEPTORS,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 
 import localeEn from '@angular/common/locales/en';
@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeFr, 'fr');
@@ -33,12 +34,14 @@ registerLocaleData(localeFr, 'fr');
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
 
