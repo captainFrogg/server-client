@@ -2,9 +2,6 @@ from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from database.models.user import User
-from database.database import db_session
-
-
 
 
 class UserResource(Resource):
@@ -14,5 +11,5 @@ class UserResource(Resource):
         if (user_id):
             user = User.query.get(user_id)
             return user.to_dict() if user else "No User Found"
-        usersResponse =  [user.to_dict() for user in User.query.all()]
-        return  usersResponse if usersResponse else "No Users Found in database"
+        usersResponse = [user.to_dict() for user in User.query.all()]
+        return usersResponse if usersResponse else "No Users Found in database"

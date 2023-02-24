@@ -1,16 +1,19 @@
 from flask import jsonify, make_response, request
 from flask_jwt_extended import create_access_token
 from flask_restful import Api, Resource
-from app import db_session
+from flask_sqlalchemy import SQLAlchemy
+from database.database import DataBaseManager
 
 
 from database.models.user import User
+
+db: SQLAlchemy = DataBaseManager().get_db()
 
 
 class LoginResource(Resource):
     def post(self):
         body = request.get_json()
-        user = User.query.filter_by(username=body['username']).first()
+        user: User = User.query.filter_by(username=body['username']).first()
 
         if user is None:
             return make_response(jsonify({"msg": "Bad username or password"}), 400)
@@ -30,6 +33,6 @@ class SignUpResource(Resource):
         email = body['email']
         password = body['password']
         user = User(username, email, password)
-        db_session.add(user)
-        db_session.commit()
+        db.session.add(user)
+        db.session.commit()
         return make_response(jsonify({"msg": "user creation success"}), 200)
