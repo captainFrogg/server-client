@@ -3,18 +3,26 @@ from flask_restful import Api
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from database.database import DataBaseManager
+from flask_admin import Admin
+
 
 from api import init_api
+from admin import init_admin_view
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config["JWT_SECRET_KEY"] = "minou"  # Change this!
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+# set optional bootswatch theme
+app.config['FLASK_ADMIN_SWATCH'] = 'readable'
 api = Api(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+admin = Admin(app)
 db_manager = DataBaseManager()
 db_manager.initialize_db(app)
+init_admin_view(admin, db_manager.get_db())
+
 init_api(api)
 
 
