@@ -1,4 +1,5 @@
 from flask_admin.contrib.sqla import ModelView
+from flask_jwt_extended import get_jwt_identity, jwt_required, verify_jwt_in_request
 from database.models.user import User
 from database.models.role import Role
 

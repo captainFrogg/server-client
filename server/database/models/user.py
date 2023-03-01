@@ -44,3 +44,6 @@ class User(db.Model, SerializerMixin):
         characters = string.ascii_letters + string.digits + string.punctuation
         password = ''.join(random.choice(characters) for i in range(16))
         return password
+
+    def can(self, permission: int):
+        return self.role.has_permission(permission)

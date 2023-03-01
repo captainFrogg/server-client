@@ -11,7 +11,8 @@ from admin import init_admin_view
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config["JWT_SECRET_KEY"] = "minou"  # Change this!
+app.config["JWT_SECRET_KEY"] = "minou"  # TODO: Change this!
+app.secret_key = "super secret ultra"  # TODO: Change this!
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 # set optional bootswatch theme
 app.config['FLASK_ADMIN_SWATCH'] = 'readable'

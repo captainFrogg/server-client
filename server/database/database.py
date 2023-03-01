@@ -25,18 +25,51 @@ class DataBaseManager(object):
             # upgrade()
 
     def __init_rows(self):
-        rows = []
 
         from .models.user import User
         from .models.role import Role
 
         roles = Role.query.all()
         users = User.query.all()
-
+        adminRole = None
         if not roles:
-            rows.append(Role(name="Admin"))
-            rows.append(Role(name="User"))
+            rows = []
+            adminRole = Role(name="Admin")
+            rows.append(adminRole)
+            rows.append(Role(name="User", default=True))
+            self.db.session.add_all(rows)
+            self.db.session.commit()
+
+        self.init_permissions()
+
+        if adminRole is None:
+            adminRole = Role.query.filter_by(name="Admin").first()
+
         if not users:
-            rows.append(User(username="admin", email="admin@toto.fr"))
-        self.db.session.add_all(rows)
+            rows = []
+            rows.append(
+                User(username="admin", email="admin@toto.fr", role_id=adminRole.id))
+            self.db.session.add_all(rows)
+            self.db.session.commit()
+
+    def init_permissions(self):
+        from .models.permissions import Permission
+        from .models.role import Role
+
+        roles = {
+            'User': [Permission.READ, Permission.WRITE],
+            'Admin': [Permission.READ, Permission.WRITE, Permission.ADMIN]
+        }
+
+        for role_name in roles.keys():
+            role = Role.query.filter_by(name=role_name).first()
+
+            if role is None:
+                role = Role(name=role_name, default=role_name == 'User')
+            role.reset_permissions()
+
+            for permission in roles[role_name]:
+                role.add_permission(permission)
+
+            self.db.session.add(role)
         self.db.session.commit()
