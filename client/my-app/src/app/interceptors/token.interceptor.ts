@@ -42,7 +42,7 @@ export class TokenInterceptor implements HttpInterceptor {
         (event: HttpEvent<any>) => {},
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 401 || err.status === 403) {
+            if (err.status === 401) {
               const snackbarService = this.injector.get(SnackbarService);
 
               snackbarService.warning('Vous avez été déconnecté');

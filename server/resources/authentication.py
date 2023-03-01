@@ -6,6 +6,8 @@ from database.database import DataBaseManager
 
 
 from database.models.user import User
+from database.models.user import Role
+
 
 db: SQLAlchemy = DataBaseManager().get_db()
 
@@ -32,7 +34,7 @@ class SignUpResource(Resource):
         username = body['username']
         email = body['email']
         password = body['password']
-        user = User(username, email, password)
+        user = User(username, email, password, Role.get_default().id)
         db.session.add(user)
         db.session.commit()
         return make_response(jsonify({"msg": "user creation success"}), 200)

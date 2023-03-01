@@ -2,10 +2,13 @@ from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from database.models.user import User
+from decorators import permission_required
+from database.models.permissions import Permission
 
 
 class UserResource(Resource):
     @jwt_required()
+    @permission_required(Permission.READ)
     def get(self):
         user_id = request.args.get('id', None)
         if (user_id):

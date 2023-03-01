@@ -26,12 +26,10 @@ export class LogoutGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('token', this.authenticationService.getAuthToken());
     if (
       this.authenticationService.getAuthToken() !== undefined &&
       this.authenticationService.getAuthToken() !== null
     ) {
-      console.log('i should not be here');
       this.router.navigate(['/home']);
       return false;
     }
