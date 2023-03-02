@@ -1,5 +1,6 @@
 import random
 import string
+from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
 from flask_bcrypt import generate_password_hash, check_password_hash
 from database.database import DataBaseManager
@@ -10,7 +11,7 @@ from .role import Role
 db = DataBaseManager().get_db()
 
 
-class User(db.Model, SerializerMixin):
+class User(db.Model, SerializerMixin, UserMixin):
     __tablename__ = 'users'
     serialize_only = ('id', 'email', 'username')
 

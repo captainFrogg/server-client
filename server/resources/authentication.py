@@ -1,5 +1,6 @@
 from flask import jsonify, make_response, request
 from flask_jwt_extended import create_access_token
+from flask_login import login_user
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from database.database import DataBaseManager
@@ -21,6 +22,7 @@ class LoginResource(Resource):
             return make_response(jsonify({"msg": "Bad username or password"}), 400)
 
         if user.check_password(body['password']):
+            login_user(user)
             access_token = create_access_token(identity=body['username'])
 
             return make_response(jsonify({"access_token": access_token}), 200)
